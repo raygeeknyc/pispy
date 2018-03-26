@@ -1,4 +1,9 @@
 #!/bin/bash
+ping -c 1 -W 1 www.google.com
+if [[ $? -ne 0 ]];then
+  logger "No internet, not sending files"
+  exit -1
+fi
 GSUTIL="/usr/local/google-cloud-sdk/bin/gsutil"
 m_file=`basename $1`
 m_path=`dirname $1`
